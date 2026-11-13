@@ -1,0 +1,14 @@
+BUILD THE WINDOWS EXE USING GITHUB ACTIONS
+
+This project is a Windows Forms + WebView2 app. It must be built on Windows.
+
+1. Create a new GitHub repository.
+2. Upload the contents of this folder (including the hidden .github folder).
+3. Open the repository's Actions tab.
+4. Select "Build Windows WebView2 app" and click "Run workflow" (or push to main/master).
+5. When the run succeeds, open the run and download the artifact named
+   ObsidianGamesAdminTool-Windows-x64.
+6. Extract the artifact and run ObsidianGamesAdminTool.exe on Windows 10/11.
+
+The app still requires Microsoft Edge WebView2 Runtime. Most Windows 11 PCs
+already have it. If missing, install the Evergreen WebView2 Runtime from Microsoft.
