@@ -1,0 +1,28 @@
+name: Build Windows WebView2 app
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Install .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Publish self-contained Windows app
+        run: dotnet publish ObsidianGamesAdminTool.csproj -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true /p:EnableCompressionInSingleFile=true
+      - name: Upload EXE artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ObsidianGamesAdminTool-Windows-x64
+          path: bin/Release/net8.0-windows/win-x64/publish/ObsidianGamesAdminTool.exe
+          if-no-files-found: error
